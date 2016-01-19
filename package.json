@@ -1,0 +1,30 @@
+{
+  "name": "pomegranate-express",
+  "version": "0.0.1",
+  "description": "Provides an Express server, middleware layer, and route loader to the pomegranate framework.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Pomegranate",
+    "Express",
+    "Plugin"
+  ],
+  "author": "Jim <monstertke@paperelectron.com> (http://paperelectron.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.1.1",
+    "express": "^4.13.3",
+    "lodash": "^3.10.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pomegranate/pomegranate-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Pomegranate/pomegranate-express/issues"
+  },
+  "homepage": "https://github.com/Pomegranate/pomegranate-express"
+}
