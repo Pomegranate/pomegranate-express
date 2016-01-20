@@ -6,14 +6,24 @@
  */
 
 /**
+ * Configures the Express application and mounts all pre-route middleware.
+ * @module Launcher
+ * @injector {None} Adds nothing to the injector.
+ * @options {Object} options
+ * @options {Number} options.port Port to bind server to. Default: 8080
+ * @options {String} options.address Address to bind server to. Default: localhost
  *
- * @module ExpressLauncher
  */
 
 module.exports = {
+  options: {
+    port: 8080,
+    address: 'localhost'
+  },
   metadata: {
     name: 'ExpressLauncher',
-    layer: 'server'
+    layer: 'server',
+    type: 'none'
   },
   plugin: {
     load: function(inject, loaded) {
@@ -24,7 +34,10 @@ module.exports = {
       loaded(null, null)
     },
     start: function(done) {
-      this.server = this.app.listen(8100, function(){
+      var self = this;
+      this.server = this.app.listen(this.options.port, function(){
+
+        self.Logger.log('Started express server on port ' + self.options.port)
         done()
       });
     },

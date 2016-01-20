@@ -12,14 +12,21 @@ var fs = Promise.promisifyAll(require('fs'));
 var path = require('path');
 
 /**
- *
- * @module ExpressRouter
+ * Loads and mounts provided route definition files located in options.workDir
+ * @module Router
+ * @injector {None} Adds nothing to the injector.
+ * @options {Object} options
+ * @options {String} options.workDir Default: './routes'
  */
 
 module.exports = {
+  options: {
+    workDir: './routes'
+  },
   metadata: {
     name: 'ExpressRouter',
-    layer: 'router'
+    layer: 'router',
+    type: 'none'
   },
   plugin: {
     load: function(inject, loaded) {
@@ -74,9 +81,9 @@ module.exports = {
           return ('/' + resolved.dir + '/' + resolved.name).toLowerCase();
         }
 
-        loadIfFile(self.options.routes)
+        loadIfFile(self.options.workDir)
           .each(function(pendingRequirePath){
-            var mountPath = parseMountPath(self.options.routes, pendingRequirePath);
+            var mountPath = parseMountPath(self.options.workDir, pendingRequirePath);
             var route = require(pendingRequirePath);
             route = inject(route)
             if(_.isObject(route) && route.name === 'router'){
