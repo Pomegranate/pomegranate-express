@@ -1,6 +1,6 @@
 {
   "name": "pomegranate-express",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Provides an Express server, middleware layer, and route loader to the pomegranate framework.",
   "main": "index.js",
   "scripts": {
