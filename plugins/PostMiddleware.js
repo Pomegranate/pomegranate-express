@@ -11,8 +11,8 @@ var _ = require('lodash');
  * Configures the Express application and mounts all post-route middleware, including error handlers.
  * @module PostMiddleware
  * @injector {None} Adds nothing to the injector.
- * @options {Object} options
- * @options {Array} options.order Mount order of middleware functions. Default: ['404', '500']
+ * @property {Object} options Plugin Options
+ * @property {String[]} options.order='['404','500']' -  Mount order of middleware functions.
  *
  */
 

@@ -15,8 +15,8 @@ var path = require('path');
  * Loads and mounts provided route definition files located in options.workDir
  * @module Router
  * @injector {None} Adds nothing to the injector.
- * @options {Object} options
- * @options {String} options.workDir Default: './routes'
+ * @property {Object} options Plugin Options
+ * @property {String} options.workDir=./routes - Directory to load routes from.
  */
 
 module.exports = {
@@ -88,7 +88,7 @@ module.exports = {
             route = inject(route)
             if(_.isObject(route) && route.name === 'router'){
               loadCount += 1;
-              self.Logger.log('Express Router: Loaded routes for ' + mountPath)
+              self.Logger.log('Loaded routes for ' + mountPath)
               Express.use(mountPath, route)
             } else {
               self.Logger.error('Express Router: Attempted to load invalid route module:'

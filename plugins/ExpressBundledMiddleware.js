@@ -11,9 +11,9 @@
  * Provides Overrideable standard middleware.
  * @module BundledMiddleware
  * @injector {Merge} Merges all returned objects into the provided dep name.
- * @options {Object} none
- * @injects {function} Middleware - 404
- * @injects {function} Middleware - 500
+ * @property {Object} options - This plugin has no options
+ * @injects: {function} Middleware - 404
+ * @injects: {function} Middleware - 500
  */
 
 module.exports = {

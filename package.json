@@ -1,6 +1,6 @@
 {
   "name": "pomegranate-express",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Provides an Express server, middleware layer, and route loader to the pomegranate framework.",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,10 @@
   ],
   "author": "Jim <monstertke@paperelectron.com> (http://paperelectron.com/)",
   "license": "MIT",
+  "files": [
+    "index.js",
+    "plugins/"
+  ],
   "dependencies": {
     "bluebird": "^3.1.1",
     "express": "^4.13.3",

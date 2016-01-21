@@ -9,9 +9,9 @@
  * Configures the Express application and mounts all pre-route middleware.
  * @module Launcher
  * @injector {None} Adds nothing to the injector.
- * @options {Object} options
- * @options {Number} options.port Port to bind server to. Default: 8080
- * @options {String} options.address Address to bind server to. Default: localhost
+ * @property {Object} options Plugin Options
+ * @property {Number} options.port=8080 Port to bind server to.
+ * @property {String} options.address=localhost Address to bind server to.
  *
  */
 

@@ -12,8 +12,8 @@ var _ = require('lodash');
  * Configures the Express application and mounts all pre-route middleware.
  * @module PreMiddleware
  * @injector {None} Adds nothing to the injector.
- * @options {Object} options
- * @options {Array} options.order Mount order of middleware functions.
+ * @property {Object} options Plugin Options
+ * @property {Array} options.order Mount order of middleware functions.
  *
  */
 

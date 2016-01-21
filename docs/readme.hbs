@@ -1,10 +1,135 @@
 # Pomegranate-Express
 
-A Plugin bundle for the Pomegranate application framework.
+A Plugin bundle for the [Pomegranate](https://github.com/Pomegranate/Pomegranate) application framework.
+Pomegranate-Express bundles several easily configurable plugins that implement the Express framework.
+
+# Usage and Examples
+
+### Install
+```shell
+$ npm install --save pomegranate pomegranate-express
+$ ./node_modules/.bin/pomegranate init -f . && ./node_modules/.bin/pomegranate build
+$ node pom.js
+```
+
+### Routing.
+
+The Router plugin creates your route structure based on directory and module names.
+You can basically treat it exactly like an instance of [Express Router](http://expressjs.com/en/api.html#router)
+because that is exactly what it is.
+
+ex.
+
+```javascript
+/* file ./routes/index.js */
+
+module.exports = function(Router){
+
+  //available at http://localhost:8080/
+  Router.get('/', function(req, res, next){
+    res.send('Hello from the index')
+  })
+
+  // Note: your route files must return
+  // the factory instance of Router provided
+  return Router
+}
+
+```
+You can define named routes just as easily.
+
+```javascript
+/* file ./routes/hello/index.js */
+
+module.exports = function(Router){
+  //available at http://localhost:8080/hello
+  Router.get('/', function(req, res, next){
+    res.send('Hello from a sub directory')
+  })
+
+  //available at http://localhost:8080/hello/world
+  Router.get('/world', function(req, res, next){
+    res.send('Hello from a named route')
+  })
+  return Router
+}
+```
+
+Finally You can name your files if you have complex routes that you wish to segregate.
+These coexist with index files, so feel free to experiment with what works best for you.
+
+```javascript
+/* file ./routes/hello/name.js */
+
+module.exports = function(Router){
+  //available at http://localhost:8080/hello/name/bob
+  Router.get('/:name', function(req, res, next){
+    res.send('Hello from a named file ' + req.params.name)
+  })
+  return Router
+}
+
+```
+### Middleware.
+
+Obviously any Express application lives on its middleware stack. Pomegranate makes it easy to create, configure and
+load your middleware functions without a huge boilerplate file.
+
+Pomegranate-express loads its middleware and routes in 3 layers. `pre_router`, `router`, and `post_router`.
+As the names imply pre_router is for all middlewares that need to come before your routes, and post_router is
+for everything that needs to come after like error handlers.
+
+The Application Plugin creates a shared object that middleware functions can merge into,
+Later in the Pomegranate bootstrap process, the PreRouter and PostRouter plugins will use this object
+to mount your middleware in the correct (configurable) order. The BundleMiddleware plugin provides some stock functions,
+you can easily override them by creating your own with the same name.
+
+ex.
+
+```javascript
+/* file ./plugins/MyMiddleware.js */
+
+module.exports = {
+  options: { //optional but preferred}
+  metadata: {
+    name: 'MyMiddleware',
+    layer: 'dependencies'
+    param: 'Middleware',
+    type: 'merge'
+  },
+  plugin: {
+    load: function(inject, loaded){
+
+      /*
+       * Create one or many middleware functions here, you can split them up into separate files if needed.
+       */
+
+      var myMiddlewares = {
+       awesome: function(req, res, next){
+          console.log('You are really awesome')
+          next()
+       }
+     }
+
+     /*
+      * When you are ready, call loaded with your middlewares as the second param.
+      * If something goes wrong, pass the error to the first param of loaded()
+      */
+
+     loaded(null, myMiddlewares)
+    },
+    start: function(done){
+      done(null)
+    }
+    stop: function(done){
+      done(null)
+    }
+  }
+}
+```
+
 
 # Included Plugins
-
-Pomegranate-Express bundles several easily configurable plugins that implement the Express framework.
 
 {{#module name="Application"~}}{{>docs}}{{/module}}
 {{#module name="BundledMiddleware"~}}{{>docs}}{{/module}}
@@ -17,4 +142,3 @@ Pomegranate-Express bundles several easily configurable plugins that implement t
 {{#module name="404"~}}{{>docs}}{{/module}}
 {{#module name="500"~}}{{>docs}}{{/module}}
 
-# Usage and Examples
