@@ -7,3 +7,4 @@
 env.json
 /test/mocks/.octorp
 /scratch
+.nyc_output/

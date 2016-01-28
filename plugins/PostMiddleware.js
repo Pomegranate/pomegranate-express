@@ -21,7 +21,7 @@ module.exports = {
     order: ['404', '500']
   },
   metadata: {
-    name: 'ExpressPostRouter',
+    name: 'PostRouter',
     layer: 'post_router',
     type: 'none'
   },

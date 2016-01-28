@@ -18,7 +18,7 @@
 
 module.exports = {
   metadata: {
-    name: 'ExpressBundledMiddleware',
+    name: 'BundledMiddleware',
     param: 'Middleware',
     layer: 'core',
     type: 'merge'

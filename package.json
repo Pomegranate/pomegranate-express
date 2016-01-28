@@ -4,7 +4,7 @@
   "description": "Provides an Express server, middleware layer, and route loader to the pomegranate framework.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=test tap -R spec --cov test/unit/*.js",
     "readme": "jsdoc2md -t docs/readme.hbs \"plugins/**/*.js\" \"index.js\" > Readme.md"
   },
   "keywords": [
@@ -24,7 +24,8 @@
     "lodash": "^3.10.1"
   },
   "devDependencies": {
-    "jsdoc-to-markdown": "^1.3.3"
+    "jsdoc-to-markdown": "^1.3.3",
+    "tap": "^5.1.1"
   },
   "repository": {
     "type": "git",

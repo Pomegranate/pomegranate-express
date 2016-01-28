@@ -19,18 +19,36 @@ var _ = require('lodash');
 
 module.exports = {
   options: {
-    order: ['simple', 'passport']
+    middlewareOrder: ['simple', 'passport']
   },
   metadata: {
-    name: 'ExpressPreRouter',
+    name: 'PreRouter',
     layer: 'pre_router',
     type: 'none'
   },
   plugin: {
     load: function(inject, loaded){
       var self = this;
-      inject(function(Express, Middleware){
-        _.chain(self.options.order)
+      inject(function(Express, Middleware, ExpressConfig){
+
+        // Bring in all of the Express configurations.
+        self.Logger.log('Configuring Express.')
+        var a = _.chain(ExpressConfig)
+          .map(function(fn, prop){
+            return {name: prop, fn: fn}
+          })
+          .filter(function(obj) {
+            return _.isFunction(obj.fn)
+          })
+          .each(function(confFn){
+            self.Logger.log('Setting config for ' + confFn.name)
+            confFn.fn(Express)
+          })
+          .value()
+
+        // Bring in all of the merged middlewares.
+        self.Logger.log('Adding Pre-Router middleware.')
+        _.chain(self.options.middlewareOrder)
           .map(function(p){
             return {fn: Middleware[p], name: p}
           })
@@ -42,12 +60,8 @@ module.exports = {
             Express.use(vmw.fn)
           })
           .value()
+      });
 
-        Express.use(function(req, res, next){
-          console.log('derp');
-          next()
-        })
-      })
       loaded(null, null)
     },
     start: function(done){

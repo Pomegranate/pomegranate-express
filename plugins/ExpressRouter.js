@@ -24,7 +24,7 @@ module.exports = {
     workDir: './routes'
   },
   metadata: {
-    name: 'ExpressRouter',
+    name: 'Router',
     layer: 'router',
     type: 'none'
   },

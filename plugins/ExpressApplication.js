@@ -27,7 +27,7 @@ module.exports = {
     strictRouting: false
   },
   metadata: {
-    name: 'ExpressApp',
+    name: 'CoreApplication',
     layer: 'core',
     type: 'dynamic'
   },
@@ -47,7 +47,8 @@ module.exports = {
       var Deps = [
         {param: 'Express', load: App},
         {param: 'Router', load: configRouter, type: 'factory'},
-        {param: 'Middleware', load: {}, type: 'merge'}
+        {param: 'Middleware', load: {}, type: 'merge'},
+        {param: 'ExpressConfig', load:{}, type: 'merge'}
       ]
       loaded(null, Deps)
     },

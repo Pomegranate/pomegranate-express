@@ -21,7 +21,7 @@ module.exports = {
     address: 'localhost'
   },
   metadata: {
-    name: 'ExpressLauncher',
+    name: 'Launcher',
     layer: 'server',
     type: 'none'
   },
