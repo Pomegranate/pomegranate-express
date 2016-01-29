@@ -19,7 +19,7 @@ var _ = require('lodash');
 
 module.exports = {
   options: {
-    middlewareOrder: ['simple', 'passport']
+    middlewareOrder: ['compression', 'responseTime', 'logging']
   },
   metadata: {
     name: 'PreRouter',

@@ -12,7 +12,7 @@
  * @module 500
  */
 
-exports['500'] = function(err, req, res, next){
+module.exports = function(err, req, res, next){
   res.status(500)
   res.json({error: 'Something broke'})
 }

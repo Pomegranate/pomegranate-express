@@ -13,7 +13,9 @@
 module.exports = [
   //layer core
   require('./plugins/ExpressApplication'),
-  require('./plugins/ExpressBundledMiddleware'),
+  require('./plugins/StaticFiles'),
+  require('./plugins/ErrorMiddleware'),
+  require('./plugins/BundledMiddleware'),
 
   //layer pre_router
   require('./plugins/PreMiddleware'),

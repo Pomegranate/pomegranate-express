@@ -12,7 +12,7 @@
  * @module 404
  */
 
-exports['404'] = function(req, res, next){
+module.exports = function(req, res, next){
   res.status(404)
   res.json({error: 'Not found'})
 }

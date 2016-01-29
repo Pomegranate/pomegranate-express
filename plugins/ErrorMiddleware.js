@@ -25,11 +25,15 @@ module.exports = {
   },
   plugin: {
     load: function(inject, loaded) {
-      var Deps = [
-        {param: 'Middleware', load: require('./middleware/404'), type: 'merge'},
-        {param: 'Middleware', load: require('./middleware/500'), type: 'merge'}
-      ]
-      loaded(null, Deps)
+      //var Bundled = [
+      //  {param: 'Middleware', load: require('./middleware/404'), type: 'merge'},
+      //  {param: 'Middleware', load: require('./middleware/500'), type: 'merge'}
+      //]
+      var Bundled = {
+        404: require('./middleware/404'),
+        500: require('./middleware/500')
+      }
+      loaded(null, Bundled)
     },
     start: function(done) {
       done()
