@@ -12,17 +12,25 @@
 
 module.exports = [
   //layer core
-  require('./plugins/ExpressApplication'),
+
+  //require('./plugins/ExpressApplication'),
+  require('pomegranate-express-application'),
+
   require('./plugins/StaticFiles'),
   require('./plugins/ErrorMiddleware'),
   require('./plugins/BundledMiddleware'),
 
   //layer pre_router
   require('./plugins/PreMiddleware'),
+
   //layer router
-  require('./plugins/ExpressRouter'),
+  //require('./plugins/ExpressRouter'),
+  require('pomegranate-express-route-directory'),
+
   //layer post_router
   require('./plugins/PostMiddleware'),
   //layer server
-  require('./plugins/ExpressLauncher')
+
+  //require('./plugins/ExpressLauncher')
+  require('pomegranate-express-server')
 ]

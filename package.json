@@ -24,6 +24,9 @@
     "express": "^4.13.3",
     "lodash": "^3.10.1",
     "morgan": "^1.6.1",
+    "pomegranate-express-application": "0.0.1",
+    "pomegranate-express-route-directory": "0.0.1",
+    "pomegranate-express-server": "0.0.1",
     "response-time": "^2.3.1",
     "serve-static": "^1.10.2"
   },
