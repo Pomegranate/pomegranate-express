@@ -21,16 +21,15 @@ module.exports = [
   require('./plugins/BundledMiddleware'),
 
   //layer pre_router
-  require('./plugins/PreMiddleware'),
+  require('pomegranate-express-preroute-middleware'),
 
   //layer router
   //require('./plugins/ExpressRouter'),
   require('pomegranate-express-route-directory'),
 
   //layer post_router
-  require('./plugins/PostMiddleware'),
-  //layer server
+  require('pomegranate-express-postroute-middleware'),
 
-  //require('./plugins/ExpressLauncher')
+  //layer server
   require('pomegranate-express-server')
 ]
