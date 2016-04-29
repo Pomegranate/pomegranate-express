@@ -18,17 +18,13 @@
 
 module.exports = {
   metadata: {
-    name: 'BundledMiddleware',
+    name: 'ErrorMiddleware',
     param: 'Middleware',
     layer: 'core',
     type: 'merge'
   },
   plugin: {
     load: function(inject, loaded) {
-      //var Bundled = [
-      //  {param: 'Middleware', load: require('./middleware/404'), type: 'merge'},
-      //  {param: 'Middleware', load: require('./middleware/500'), type: 'merge'}
-      //]
       var Bundled = {
         404: require('./middleware/404'),
         500: require('./middleware/500')
