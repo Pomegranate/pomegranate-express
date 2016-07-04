@@ -20,8 +20,8 @@ module.exports = {
   metadata: {
     name: 'ErrorMiddleware',
     param: 'Middleware',
-    layer: 'core',
-    type: 'merge'
+    type: 'merge',
+    depends: ['ExpressCore']
   },
   plugin: {
     load: function(inject, loaded) {

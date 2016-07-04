@@ -18,9 +18,9 @@ exports.options = {
 
 exports.metadata = {
   name: 'StaticFiles',
-  layer: 'core',
   type: 'merge',
-  param: 'Middleware'
+  param: 'Middleware',
+  depends: ['ExpressCore']
 }
 
 exports.plugin = {

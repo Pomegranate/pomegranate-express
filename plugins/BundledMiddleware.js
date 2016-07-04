@@ -18,9 +18,9 @@ var responseTime = require('response-time');
 
 exports.metadata = {
   name: 'BundledMiddleware',
-  layer: 'core',
   type: 'merge',
-  param: 'Middleware'
+  param: 'Middleware',
+  depends: ['ExpressCore']
 }
 
 exports.plugin = {
