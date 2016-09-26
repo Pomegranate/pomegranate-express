@@ -6,6 +6,7 @@
  */
 
 'use strict';
+var url = require('url')
 var morgan = require('morgan');
 var logCommon = morgan.compile(morgan.common);
 var compression = require('compression');
@@ -15,6 +16,10 @@ var responseTime = require('response-time');
  *
  * @module BundledMiddleware
  */
+
+exports.options = {
+  skipLogging: ['/health']
+}
 
 exports.metadata = {
   name: 'BundledMiddleware',
@@ -39,7 +44,7 @@ exports.plugin = {
           'response-time': t['response-time'](req, res) + 'ms'
         };
         bareLogger.log(logCommon(morgan, req, res));
-      }),
+      }, findSkippedLogging(self.options.skipLogging)),
       compression: compression(),
       responseTime: responseTime()
     }
@@ -50,5 +55,20 @@ exports.plugin = {
   },
   stop: function(done) {
     done()
+  }
+}
+
+function findSkippedLogging(skipPaths){
+
+  var skipfn = function(req, res){
+    var pathname = url.parse(req.originalUrl).pathname
+    return skipPaths.reduce(function(oldVal, newVal){
+      if(newVal === pathname) return true
+      return oldVal
+    }, false)
+  }
+
+  return {
+    skip: skipPaths && skipPaths.length >= 1 ? skipfn : false
   }
 }
